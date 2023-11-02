@@ -3,27 +3,9 @@ import moment from "moment";
 
 function WeatherDisplay({ data, days }) {
   if (!data) return null;
-
-  const today = moment().format("YYYY-MM-DD");
-  const tomorrow = moment().add(1, "days").format("YYYY-MM-DD");
-
-  const todayData = data.list.filter((item) => item.dt_txt.includes(today));
-  const tomorrowData = data.list.filter((item) =>
-    item.dt_txt.includes(tomorrow)
-  );
-
-  const nextFewDaysData = data.list.filter((item, index) => {
-    if ((index === 0) | item.dt_txt.includes("12:00")) {
-      return true;
-    }
-  });
-
   const getHours = (date) => {
     return date.substring(10, 16);
   };
-
-  console.log(nextFewDaysData);
-
   const getDate = (date) => {
     const months = [
       "January",
@@ -42,6 +24,27 @@ function WeatherDisplay({ data, days }) {
 
     return `${date.substring(8, 10)} ${months[date.substring(5, 7) - 1]}`;
   };
+
+  const today = moment().format("YYYY-MM-DD");
+  const tomorrow = moment().add(1, "days").format("YYYY-MM-DD");
+
+  const todayData = data.list.filter((item) => item.dt_txt.includes(today));
+  const tomorrowData = data.list.filter((item) =>
+    item.dt_txt.includes(tomorrow)
+  );
+
+  const nextFewDaysData = data.list
+    .filter((item, index) => {
+      return index === 0 || item.dt_txt.includes("12:00");
+    })
+    .filter((item, index, array) => {
+      if (index < array.length - 1) {
+        const currentDate = getDate(array[index].dt_txt);
+        const nextDate = getDate(array[index + 1].dt_txt);
+        return currentDate !== nextDate;
+      }
+      return true;
+    });
 
   return (
     <div className="display">

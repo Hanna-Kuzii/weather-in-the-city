@@ -1,14 +1,21 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function WeatherForm({ onWeatherData, weatherData, setEnterCity, enterCity, setDays }) {
+function WeatherForm({
+  onWeatherData,
+  weatherData,
+  setEnterCity,
+  enterCity,
+  setDays,
+  setRequestCity,
+}) {
   const [city, setCity] = useState("");
   const apiKey = "66ef13c788c86f550f6a58268035931f";
 
   const fetchWeatherData = (event) => {
     event.preventDefault();
     setEnterCity(true);
-    setDays('today');
+    setDays("today");
 
     axios
       .get(
@@ -16,10 +23,12 @@ function WeatherForm({ onWeatherData, weatherData, setEnterCity, enterCity, setD
       )
       .then((response) => {
         onWeatherData(response.data);
+        setRequestCity(false);
       })
       .catch((error) => {
         console.error(error);
         onWeatherData(null);
+        setRequestCity(true);
       });
   };
 
@@ -64,7 +73,6 @@ function WeatherForm({ onWeatherData, weatherData, setEnterCity, enterCity, setD
               autoComplete="off"
               defaultChecked
               onClick={() => handleSetDays("today")}
-
             />
             Today's weather
           </label>

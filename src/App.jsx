@@ -6,6 +6,7 @@ import WeatherDisplay from "./componets/WeatherDisplay/WeatherDisplay";
 function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [enterCity, setEnterCity] = useState("false");
+  const [requestCity, setRequestCity] = useState(false);
   const [days, setDays] = useState("today");
 console.log(enterCity)
   const handleWeatherData = (data) => {
@@ -21,9 +22,10 @@ console.log(enterCity)
         setEnterCity={setEnterCity}
         enterCity={enterCity}
         setDays={setDays}
+        setRequestCity={setRequestCity}
       />
       {enterCity &&
-        (weatherData?.lenght !== 0 ? (
+        (!requestCity ? (
           <WeatherDisplay data={weatherData} days={days} />
         ) : (
           <div>Try other city</div>
