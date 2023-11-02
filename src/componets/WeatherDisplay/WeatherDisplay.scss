@@ -1,0 +1,47 @@
+.display {
+
+  &__weathers {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  &__day {
+    margin: 1vh 0;
+    font-size: 2.2em;
+    font-weight: 600;
+  }
+}
+
+.day {
+  width: fit-content;
+  padding: 5px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+
+  border-radius: 3px;
+  &__date {
+    width: 100%;
+    font-size: 1.5em;
+    font-weight: 500;
+  }
+  &__body {
+    font-size: 1.2em;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__weather {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__img {
+    height: 50px;
+  }
+}

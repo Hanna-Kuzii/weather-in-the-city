@@ -1,0 +1,11 @@
+.form {
+
+  &__radiobuttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  &__radio {
+    display: none;
+  }
+}
