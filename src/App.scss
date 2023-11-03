@@ -1,0 +1,13 @@
+@import './componets/WeatherForm/WeatherForm.scss';
+@import './componets/WeatherDisplay/WeatherDisplay.scss';
+
+.app {
+  margin: 0 auto;
+  width: 80vw;
+  text-align: center;
+  &__header {
+    margin: 3vh;
+    font-size: 2.5em;
+    font-weight: 700;
+  }
+}
